@@ -12,7 +12,7 @@ do
         Console.WriteLine("La direccion que ingreso no existe, ingrese otra");
         direccion = Console.ReadLine();
     }
-} while (!(Path.Exists(direccion)));
+} while (!Path.Exists(direccion));
 foreach (string direcciones in Directory.GetDirectories(direccion))
 {
     Console.WriteLine(Path.GetFileName(direcciones));
@@ -20,7 +20,8 @@ foreach (string direcciones in Directory.GetDirectories(direccion))
 foreach (string archivos in Directory.GetFiles(direccion))
 {
     Console.WriteLine(Path.GetFileName(archivos));
-    byte[] bits = File.ReadAllBytes(archivos);
-    long tamanio = bits.Length;
-    Console.WriteLine(tamanio);
+    //byte[] bits = File.ReadAllBytes(archivos);
+    FileInfo info = new FileInfo(archivos);
+    long tamanio = info.Length;
+    Console.WriteLine(tamanio/1024);
 }
